@@ -1,1 +1,33 @@
-/.venv/
+# Python
+*.py[cod]
+__pychache__/
+*.so
+*.egg
+*.egg-info/
+dist/
+build/
+
+# Django
+*.log
+local_settings.py
+/media
+/staticfiles
+
+# Environment
+.env
+.venv/
+env/
+ENV/
+
+# IDE
+.idea/
+*.swp
+*.swo
+*~
+
+# Database
+*.sql
+
+# Settings
+/ScientaGrid/settings/local.py
+/ScientaGrid/settings/production.py
