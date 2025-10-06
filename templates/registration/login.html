@@ -1,0 +1,181 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Login - ScientaGrid{% endblock %}
+
+{% block branding %}
+<h1><a href="{% url 'admin:index' %}">ScientaGrid Login</a></h1>
+{% endblock %}
+
+{% block content %}
+<div class="login">
+    <div class="login-form">
+        <h2>Sign in to ScientaGrid Administration</h2>
+        
+        {% if form.errors %}
+            <div class="errornote">
+                <h3>Please correct the error{{ form.errors|pluralize }} below.</h3>
+                {{ form.errors }}
+            </div>
+        {% endif %}
+
+        {% if user.is_authenticated %}
+            <p class="errornote">
+                You are authenticated as {{ user.username }}, but are not authorized to
+                access this page. Would you like to login to a different account?
+            </p>
+        {% endif %}
+
+        <form action="{% url 'login' %}" method="post" id="login-form">
+            {% csrf_token %}
+            
+            <div class="form-row">
+                <label for="{{ form.username.id_for_label }}" class="required">Username:</label>
+                {{ form.username }}
+                {% if form.username.errors %}
+                    <ul class="errorlist">
+                        {% for error in form.username.errors %}
+                            <li>{{ error }}</li>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+            </div>
+            
+            <div class="form-row">
+                <label for="{{ form.password.id_for_label }}" class="required">Password:</label>
+                {{ form.password }}
+                {% if form.password.errors %}
+                    <ul class="errorlist">
+                        {% for error in form.password.errors %}
+                            <li>{{ error }}</li>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+            </div>
+            
+            {% url 'admin_password_reset' as password_reset_url %}
+            {% if password_reset_url %}
+            <div class="password-reset-link">
+                <a href="{{ password_reset_url }}">Forgotten your password or username?</a>
+            </div>
+            {% endif %}
+            
+            <div class="submit-row">
+                <input type="submit" value="Log in" class="default">
+            </div>
+            
+            {% if next %}
+                <input type="hidden" name="next" value="{{ next }}">
+            {% endif %}
+        </form>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_css %}
+<style>
+.login {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 60vh;
+    padding: 20px;
+}
+
+.login-form {
+    background: #f8f8f8;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 30px;
+    min-width: 320px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.login-form h2 {
+    margin-bottom: 20px;
+    color: #333;
+    text-align: center;
+    font-weight: normal;
+}
+
+.form-row {
+    margin-bottom: 15px;
+}
+
+.form-row label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #666;
+}
+
+.form-row input[type="text"], 
+.form-row input[type="password"] {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    font-size: 14px;
+    box-sizing: border-box;
+}
+
+.form-row input:focus {
+    border-color: #79aec8;
+    outline: none;
+}
+
+.password-reset-link {
+    margin: 15px 0;
+    text-align: center;
+}
+
+.password-reset-link a {
+    color: #79aec8;
+    text-decoration: none;
+    font-size: 13px;
+}
+
+.password-reset-link a:hover {
+    text-decoration: underline;
+}
+
+.submit-row {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.submit-row input {
+    background: #79aec8;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.submit-row input:hover {
+    background: #609ab6;
+}
+
+.errornote {
+    background: #ffc;
+    border: 1px solid #ddd;
+    padding: 10px;
+    margin-bottom: 15px;
+    border-radius: 3px;
+}
+
+.errorlist {
+    color: #cc3333;
+    margin: 5px 0;
+    padding: 0;
+    list-style: none;
+}
+
+.errorlist li {
+    font-size: 13px;
+}
+</style>
+{% endblock %}

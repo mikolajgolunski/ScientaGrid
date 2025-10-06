@@ -1,0 +1,153 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Logged out - ScientaGrid{% endblock %}
+
+{% block branding %}
+<h1><a href="{% url 'admin:index' %}">ScientaGrid</a></h1>
+{% endblock %}
+
+{% block content %}
+<div class="logout">
+    <div class="logout-message">
+        <div class="success-icon">
+            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="12" cy="12" r="10" stroke="#4CAF50" stroke-width="2"/>
+                <path d="m9 12 2 2 4-4" stroke="#4CAF50" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+        </div>
+        
+        <h2>Successfully Logged Out</h2>
+        
+        <p>You have been successfully logged out of ScientaGrid Administration.</p>
+        <p>Thank you for using ScientaGrid. Your session has been securely terminated.</p>
+        
+        <div class="actions">
+            <a href="{% url 'login' %}" class="btn btn-primary">Log in again</a>
+            <a href="{% url 'admin:index' %}" class="btn btn-secondary">Go to Admin</a>
+        </div>
+        
+        <div class="security-note">
+            <p><strong>Security tip:</strong> For your security, close your browser window if you're using a shared computer.</p>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_css %}
+<style>
+.logout {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 60vh;
+    padding: 20px;
+}
+
+.logout-message {
+    background: #f8f8f8;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 40px 30px;
+    min-width: 400px;
+    max-width: 500px;
+    text-align: center;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.success-icon {
+    margin-bottom: 20px;
+}
+
+.success-icon svg {
+    display: block;
+    margin: 0 auto;
+}
+
+.logout-message h2 {
+    color: #333;
+    margin-bottom: 20px;
+    font-weight: normal;
+    font-size: 24px;
+}
+
+.logout-message p {
+    color: #666;
+    line-height: 1.6;
+    margin-bottom: 15px;
+}
+
+.actions {
+    margin: 30px 0 20px 0;
+}
+
+.btn {
+    display: inline-block;
+    padding: 12px 20px;
+    margin: 0 8px;
+    text-decoration: none;
+    border-radius: 3px;
+    font-size: 14px;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+    border: none;
+    cursor: pointer;
+}
+
+.btn-primary {
+    background: #79aec8;
+    color: white;
+}
+
+.btn-primary:hover {
+    background: #609ab6;
+    color: white;
+    text-decoration: none;
+}
+
+.btn-secondary {
+    background: #f8f8f8;
+    color: #333;
+    border: 1px solid #ddd;
+}
+
+.btn-secondary:hover {
+    background: #e8e8e8;
+    color: #333;
+    text-decoration: none;
+}
+
+.security-note {
+    margin-top: 30px;
+    padding: 15px;
+    background: #fff3cd;
+    border: 1px solid #ffeaa7;
+    border-radius: 3px;
+    font-size: 13px;
+}
+
+.security-note p {
+    margin: 0;
+    color: #856404;
+}
+
+.security-note strong {
+    color: #856404;
+}
+
+@media (max-width: 480px) {
+    .logout-message {
+        min-width: auto;
+        margin: 0 10px;
+        padding: 30px 20px;
+    }
+    
+    .btn {
+        display: block;
+        margin: 10px 0;
+        width: 100%;
+        box-sizing: border-box;
+    }
+}
+</style>
+{% endblock %}
