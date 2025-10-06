@@ -1,0 +1,77 @@
+// ==========================================================================
+// FUNCTIONS - SCSS Helper Functions
+// ==========================================================================
+// Define utility functions for calculations and conversions
+
+// UNIT CONVERSION
+// ==========================================================================
+// Convert pixels to rem
+@function px-to-rem($px, $base: 16px) {
+  @return ($px / $base) * 1rem;
+}
+
+// Convert pixels to em
+@function px-to-em($px, $base: 16px) {
+  @return ($px / $base) * 1em;
+}
+
+// COLOR FUNCTIONS
+// ==========================================================================
+// Get color with opacity
+@function color-alpha($color, $alpha) {
+  @return rgba($color, $alpha);
+}
+
+// Lighten color by percentage
+@function color-lighten($color, $percentage) {
+  @return lighten($color, $percentage);
+}
+
+// Darken color by percentage
+@function color-darken($color, $percentage) {
+  @return darken($color, $percentage);
+}
+
+// SPACING FUNCTIONS
+// ==========================================================================
+// Get spacing value by multiplier
+@function spacing($multiplier: 1) {
+  @return $spacing-base * $multiplier;
+}
+
+// Z-INDEX MANAGEMENT
+// ==========================================================================
+// Map for z-index values
+$z-indexes: (
+  'dropdown': $z-dropdown,
+  'sticky': $z-sticky,
+  'fixed': $z-fixed,
+  'modal-backdrop': $z-modal-backdrop,
+  'modal': $z-modal,
+  'popover': $z-popover,
+  'tooltip': $z-tooltip
+);
+
+// Get z-index value
+@function z($key) {
+  @if map-has-key($z-indexes, $key) {
+    @return map-get($z-indexes, $key);
+  }
+  @warn "Unknown z-index key: #{$key}";
+  @return null;
+}
+
+// MATHEMATICAL FUNCTIONS
+// ==========================================================================
+// Calculate percentage
+@function percentage-calc($target, $context) {
+  @return ($target / $context) * 100%;
+}
+
+// Strip unit from number
+@function strip-unit($number) {
+  @if type-of($number) == 'number' and not unitless($number) {
+    @return $number / ($number * 0 + 1);
+  }
+  @return $number;
+}

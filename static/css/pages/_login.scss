@@ -1,0 +1,231 @@
+// ==========================================================================
+// LOGIN PAGE STYLES
+// ==========================================================================
+// Styles specific to the login and logout pages
+
+// Login page layout
+.login {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 60vh;
+    padding: 20px;
+}
+
+.login-form {
+    background: #f8f8f8;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 30px;
+    min-width: 320px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.login-form h2 {
+    margin-bottom: 20px;
+    color: #333;
+    text-align: center;
+    font-weight: normal;
+}
+
+// Form styles
+.form-row {
+    margin-bottom: 15px;
+}
+
+.form-row label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #666;
+}
+
+.form-row input[type="text"], 
+.form-row input[type="password"] {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    font-size: 14px;
+    box-sizing: border-box;
+}
+
+.form-row input:focus {
+    border-color: #79aec8;
+    outline: none;
+}
+
+// Password reset link
+.password-reset-link {
+    margin: 15px 0;
+    text-align: center;
+}
+
+.password-reset-link a {
+    color: #79aec8;
+    text-decoration: none;
+    font-size: 13px;
+}
+
+.password-reset-link a:hover {
+    text-decoration: underline;
+}
+
+// Submit button
+.submit-row {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.submit-row input {
+    background: #79aec8;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.submit-row input:hover {
+    background: #609ab6;
+}
+
+// Error handling
+.errornote {
+    background: #ffc;
+    border: 1px solid #ddd;
+    padding: 10px;
+    margin-bottom: 15px;
+    border-radius: 3px;
+}
+
+.errorlist {
+    color: #cc3333;
+    margin: 5px 0;
+    padding: 0;
+    list-style: none;
+}
+
+.errorlist li {
+    font-size: 13px;
+}
+
+// Logout page styles
+.logout {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 60vh;
+    padding: 20px;
+}
+
+.logout-message {
+    background: #f8f8f8;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 40px 30px;
+    min-width: 400px;
+    max-width: 500px;
+    text-align: center;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.success-icon {
+    margin-bottom: 20px;
+}
+
+.success-icon svg {
+    display: block;
+    margin: 0 auto;
+}
+
+.logout-message h2 {
+    color: #333;
+    margin-bottom: 20px;
+    font-weight: normal;
+    font-size: 24px;
+}
+
+.logout-message p {
+    color: #666;
+    line-height: 1.6;
+    margin-bottom: 15px;
+}
+
+// Action buttons
+.actions {
+    margin: 30px 0 20px 0;
+}
+
+.btn {
+    display: inline-block;
+    padding: 12px 20px;
+    margin: 0 8px;
+    text-decoration: none;
+    border-radius: 3px;
+    font-size: 14px;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+    border: none;
+    cursor: pointer;
+}
+
+.btn-primary {
+    background: #79aec8;
+    color: white;
+}
+
+.btn-primary:hover {
+    background: #609ab6;
+    color: white;
+    text-decoration: none;
+}
+
+.btn-secondary {
+    background: #f8f8f8;
+    color: #333;
+    border: 1px solid #ddd;
+}
+
+.btn-secondary:hover {
+    background: #e8e8e8;
+    color: #333;
+    text-decoration: none;
+}
+
+// Security note
+.security-note {
+    margin-top: 30px;
+    padding: 15px;
+    background: #fff3cd;
+    border: 1px solid #ffeaa7;
+    border-radius: 3px;
+    font-size: 13px;
+}
+
+.security-note p {
+    margin: 0;
+    color: #856404;
+}
+
+.security-note strong {
+    color: #856404;
+}
+
+// Responsive styles
+@media (max-width: 480px) {
+    .logout-message {
+        min-width: auto;
+        margin: 0 10px;
+        padding: 30px 20px;
+    }
+    
+    .btn {
+        display: block;
+        margin: 10px 0;
+        width: 100%;
+        box-sizing: border-box;
+    }
+}

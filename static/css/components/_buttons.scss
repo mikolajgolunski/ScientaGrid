@@ -1,0 +1,74 @@
+// ==========================================================================
+// BUTTON COMPONENTS
+// ==========================================================================
+// Reusable button styles used throughout the application
+
+// Base button styles
+.btn {
+    display: inline-block;
+    padding: 12px 20px;
+    margin: 0 8px;
+    text-decoration: none;
+    border-radius: 3px;
+    font-size: 14px;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+    border: none;
+    cursor: pointer;
+    box-sizing: border-box;
+}
+
+// Primary button variant
+.btn-primary {
+    background: #79aec8;
+    color: white;
+}
+
+.btn-primary:hover {
+    background: #609ab6;
+    color: white;
+    text-decoration: none;
+}
+
+// Secondary button variant
+.btn-secondary {
+    background: #f8f8f8;
+    color: #333;
+    border: 1px solid #ddd;
+}
+
+.btn-secondary:hover {
+    background: #e8e8e8;
+    color: #333;
+    text-decoration: none;
+}
+
+// Submit button styles (for forms)
+.submit-row {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.submit-row input {
+    background: #79aec8;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.submit-row input:hover {
+    background: #609ab6;
+}
+
+// Responsive button styles
+@media (max-width: 480px) {
+    .btn {
+        display: block;
+        margin: 10px 0;
+        width: 100%;
+    }
+}

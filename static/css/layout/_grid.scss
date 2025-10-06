@@ -1,0 +1,67 @@
+// ==========================================================================
+// GRID AND LAYOUT SYSTEM
+// ==========================================================================
+// Base layout and grid styles for the application
+
+// Container layouts
+.login,
+.logout {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 60vh;
+    padding: 20px;
+}
+
+// Basic container
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+// Flexbox utilities
+.flex {
+    display: flex;
+}
+
+.flex-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.flex-between {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+// Grid utilities
+.grid {
+    display: grid;
+}
+
+.grid-2 {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+}
+
+.grid-3 {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+
+// Responsive grid
+@media (max-width: 768px) {
+    .grid-2,
+    .grid-3 {
+        grid-template-columns: 1fr;
+    }
+    
+    .container {
+        padding: 0 15px;
+    }
+}

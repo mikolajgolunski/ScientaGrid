@@ -1,0 +1,152 @@
+// ==========================================================================
+// FORM COMPONENTS
+// ==========================================================================
+// Reusable form styles used throughout the application
+
+// Form row container
+.form-row {
+    margin-bottom: 15px;
+}
+
+// Form labels
+.form-row label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #666;
+}
+
+// Input fields
+.form-row input[type="text"], 
+.form-row input[type="password"],
+.form-row input[type="email"] {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    font-size: 14px;
+    box-sizing: border-box;
+}
+
+.form-row input:focus {
+    border-color: #79aec8;
+    outline: none;
+}
+
+// Error handling
+.errornote {
+    background: #ffc;
+    border: 1px solid #ddd;
+    padding: 10px;
+    margin-bottom: 15px;
+    border-radius: 3px;
+}
+
+.errorlist {
+    color: #cc3333;
+    margin: 5px 0;
+    padding: 0;
+    list-style: none;
+}
+
+.errorlist li {
+    font-size: 13px;
+}
+
+// Helper text and links
+.password-reset-link {
+    margin: 15px 0;
+    text-align: center;
+}
+
+.password-reset-link a {
+    color: #79aec8;
+    text-decoration: none;
+    font-size: 13px;
+}
+
+.password-reset-link a:hover {
+    text-decoration: underline;
+}
+
+// Form containers
+.login-form,
+.logout-message {
+    background: #f8f8f8;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 30px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.login-form {
+    min-width: 320px;
+}
+
+.logout-message {
+    padding: 40px 30px;
+    min-width: 400px;
+    max-width: 500px;
+    text-align: center;
+}
+
+.login-form h2,
+.logout-message h2 {
+    margin-bottom: 20px;
+    color: #333;
+    text-align: center;
+    font-weight: normal;
+}
+
+.logout-message h2 {
+    font-size: 24px;
+}
+
+.logout-message p {
+    color: #666;
+    line-height: 1.6;
+    margin-bottom: 15px;
+}
+
+// Icons and visual elements
+.success-icon {
+    margin-bottom: 20px;
+}
+
+.success-icon svg {
+    display: block;
+    margin: 0 auto;
+}
+
+// Security and informational messages
+.security-note {
+    margin-top: 30px;
+    padding: 15px;
+    background: #fff3cd;
+    border: 1px solid #ffeaa7;
+    border-radius: 3px;
+    font-size: 13px;
+}
+
+.security-note p {
+    margin: 0;
+    color: #856404;
+}
+
+.security-note strong {
+    color: #856404;
+}
+
+// Action containers
+.actions {
+    margin: 30px 0 20px 0;
+}
+
+// Responsive form styles
+@media (max-width: 480px) {
+    .logout-message {
+        min-width: auto;
+        margin: 0 10px;
+        padding: 30px 20px;
+    }
+}

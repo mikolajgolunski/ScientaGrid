@@ -1,0 +1,51 @@
+// ==========================================================================
+// MAIN SCSS FILE - ScientaGrid
+// ==========================================================================
+// This is the main SCSS file that imports all other stylesheets.
+// Order is important - base styles first, then components, layout, etc.
+
+// 1. BASE
+// Variables, mixins, functions, and reset styles
+@import "base/variables";
+@import "base/mixins";
+@import "base/functions";
+@import "base/reset";
+@import "base/typography";
+
+// 2. VENDOR
+// Third-party library styles (if any)
+@import "vendor/normalize";
+
+// 3. LAYOUT
+// Grid systems, containers, headers, footers
+@import "layout/grid";
+@import "layout/header";
+@import "layout/footer";
+@import "layout/navigation";
+@import "layout/sidebar";
+
+// 4. COMPONENTS
+// Reusable UI components
+@import "components/buttons";
+@import "components/forms";
+@import "components/cards";
+@import "components/modals";
+@import "components/tables";
+@import "components/alerts";
+
+// 5. UTILITIES
+// Helper classes and utility styles
+@import "utilities/spacing";
+@import "utilities/text";
+@import "utilities/colors";
+@import "utilities/display";
+
+// 6. PAGES
+// Page-specific styles
+@import "pages/admin";
+@import "pages/login";
+@import "pages/dashboard";
+
+// 7. RESPONSIVE
+// Media queries and responsive styles (should be last)
+@import "utilities/responsive";

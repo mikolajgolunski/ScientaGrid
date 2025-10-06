@@ -1,0 +1,211 @@
+// ==========================================================================
+// RESET - CSS Reset and Normalization
+// ==========================================================================
+// Modern CSS reset with sensible defaults
+
+// BOX SIZING
+// ==========================================================================
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+// REMOVE DEFAULT MARGINS AND PADDING
+// ==========================================================================
+* {
+  margin: 0;
+  padding: 0;
+}
+
+// ROOT ELEMENTS
+// ==========================================================================
+html {
+  font-size: 16px;
+  line-height: $line-height-normal;
+  -webkit-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: $font-family-primary;
+  font-size: $font-size-base;
+  font-weight: $font-weight-normal;
+  line-height: $line-height-normal;
+  color: $gray-900;
+  background-color: $white;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+// HEADINGS
+// ==========================================================================
+h1, h2, h3, h4, h5, h6 {
+  font-weight: $font-weight-semibold;
+  line-height: $line-height-tight;
+  color: $gray-900;
+}
+
+// LINKS
+// ==========================================================================
+a {
+  color: $primary-color;
+  text-decoration: none;
+  
+  &:hover {
+    color: $primary-dark;
+    text-decoration: underline;
+  }
+  
+  &:focus {
+    outline: 2px solid $primary-color;
+    outline-offset: 2px;
+  }
+}
+
+// BUTTONS
+// ==========================================================================
+button {
+  font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;
+  cursor: pointer;
+  
+  &:focus {
+    outline: 2px solid $primary-color;
+    outline-offset: 2px;
+  }
+}
+
+// FORM ELEMENTS
+// ==========================================================================
+input,
+textarea,
+select {
+  font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="number"],
+input[type="search"],
+input[type="tel"],
+input[type="url"],
+textarea,
+select {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+}
+
+// Remove default button styles
+input[type="submit"],
+input[type="button"],
+button {
+  background: none;
+  border: none;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+}
+
+// MEDIA ELEMENTS
+// ==========================================================================
+img,
+svg,
+video,
+canvas,
+audio,
+iframe,
+embed,
+object {
+  display: block;
+  max-width: 100%;
+}
+
+img,
+video {
+  height: auto;
+}
+
+// LISTS
+// ==========================================================================
+ul, ol {
+  list-style: none;
+}
+
+// TABLES
+// ==========================================================================
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+th, td {
+  text-align: left;
+  vertical-align: top;
+}
+
+// MISC ELEMENTS
+// ==========================================================================
+hr {
+  border: none;
+  border-top: $border-width-thin solid $gray-200;
+  margin: $spacing-lg 0;
+}
+
+blockquote {
+  margin: $spacing-lg 0;
+  padding: $spacing-base $spacing-lg;
+  border-left: 4px solid $primary-color;
+  background-color: $gray-50;
+}
+
+code,
+pre {
+  font-family: $font-family-mono;
+  font-size: 0.875em;
+}
+
+code {
+  padding: 0.125em 0.25em;
+  background-color: $gray-100;
+  border-radius: $border-radius-sm;
+}
+
+pre {
+  padding: $spacing-base;
+  background-color: $gray-100;
+  border-radius: $border-radius-base;
+  overflow-x: auto;
+}
+
+pre code {
+  padding: 0;
+  background-color: transparent;
+}
+
+// ACCESSIBILITY
+// ==========================================================================
+// Focus styles for keyboard navigation
+:focus-visible {
+  outline: 2px solid $primary-color;
+  outline-offset: 2px;
+}
+
+// Reduced motion preference
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
