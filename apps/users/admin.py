@@ -1,6 +1,8 @@
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
-from .models import UserProfile, StaffRole
+
+from .models import StaffRole, UserProfile
+
 
 @admin.register(UserProfile)
 class UserProfileAdmin(UserAdmin):
@@ -13,6 +15,7 @@ class UserProfileAdmin(UserAdmin):
     )
     list_display = ('username', 'email', 'first_name', 'last_name', 'staff_role', 'is_active', 'is_staff')
     list_filter = ('staff_role', 'is_active', 'is_staff')
+
 
 @admin.register(StaffRole)
 class StaffRoleAdmin(admin.ModelAdmin):

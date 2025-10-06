@@ -15,6 +15,7 @@ local_settings.py
 
 # Environment
 .env
+.env.*
 .venv/
 env/
 ENV/
@@ -27,7 +28,3 @@ ENV/
 
 # Database
 *.sql
-
-# Settings
-/ScientaGrid/settings/local.py
-/ScientaGrid/settings/production.py

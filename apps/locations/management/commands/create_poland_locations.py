@@ -1,5 +1,6 @@
 from django.core.management.base import BaseCommand
-from apps.locations.models import Country, Region, City
+
+from apps.locations.models import City, Country, Region
 
 
 class Command(BaseCommand):
@@ -31,7 +32,7 @@ class Command(BaseCommand):
         if created:
             self.stdout.write(self.style.SUCCESS("Małopolska created successfully"))
 
-        #Create Kraków
+        # Create Kraków
         krakow, created = City.objects.get_or_create(
             region=malopolska,
             defaults={"postal_code": "30-000"}

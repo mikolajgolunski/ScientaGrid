@@ -1,6 +1,8 @@
-from django.contrib import admin
 from parler.admin import TranslatableAdmin
-from .models import Country, Region, City
+
+from django.contrib import admin
+
+from .models import City, Country, Region
 
 
 @admin.register(Country)

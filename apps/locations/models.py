@@ -1,5 +1,6 @@
-from django.db import models
 from parler.models import TranslatableModel, TranslatedFields
+
+from django.db import models
 
 
 class Country(TranslatableModel):
@@ -17,6 +18,7 @@ class Country(TranslatableModel):
     def __str__(self):
         return self.safe_translation_getter("name", any_language=True) or self.code
 
+
 class Region(TranslatableModel):
     """Represents a region."""
 
@@ -32,6 +34,7 @@ class Region(TranslatableModel):
 
     def __str__(self):
         return self.safe_translation_getter("name", any_language=True) or self.code
+
 
 class City(TranslatableModel):
     """Represents a city."""
