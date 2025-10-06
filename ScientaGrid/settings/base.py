@@ -43,7 +43,7 @@ INSTALLED_APPS = [
     'parler',
 
     # ScientaGrid apps
-    'apps.users',
+    'apps.users.apps.UsersConfig',
     'apps.institutions',
     'apps.locations',
     'apps.infrastructures',
@@ -154,3 +154,6 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# users model
+AUTH_USER_MODEL = 'users.UserProfile'
