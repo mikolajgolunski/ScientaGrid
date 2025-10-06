@@ -33,6 +33,7 @@ class ServiceAdmin(TranslatableAdmin):
         'typical_turnaround_days',
         'created_at'
     ]
+    filter_horizontal = ['technology_domains', 'tags']
     search_fields = [
         'translations__name',
         'translations__description',
@@ -55,6 +56,10 @@ class ServiceAdmin(TranslatableAdmin):
         }),
         ('Status', {
             'fields': ('is_active',)
+        }),
+        ('Classification', {
+            'fields': ('technology_domains', 'tags'),
+            'classes': ('collapse',)
         }),
     )
 

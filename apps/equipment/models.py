@@ -82,6 +82,18 @@ class Equipment(TranslatableModel):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
+    # Taxonomy
+    technology_domains = models.ManyToManyField(
+        'taxonomy.TechnologyDomain',
+        blank=True,
+        related_name='equipment'
+    )
+    tags = models.ManyToManyField(
+        'taxonomy.Tag',
+        blank=True,
+        related_name='equipment'
+    )
+
     class Meta:
         ordering = ['infrastructure', 'translations__name']
         verbose_name_plural = "Equipment"

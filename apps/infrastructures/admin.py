@@ -30,6 +30,7 @@ class InfrastructureAdmin(TranslatableAdmin):
         'institution__institution_type',
         'created_at'
     ]
+    filter_horizontal = ['technology_domains', 'categories', 'tags']
     search_fields = [
         'translations__name',
         'translations__description',
@@ -53,6 +54,10 @@ class InfrastructureAdmin(TranslatableAdmin):
         }),
         ('Internal Notes', {
             'fields': ('internal_comments',),
+            'classes': ('collapse',)
+        }),
+        ('Classification', {
+            'fields': ('technology_domains', 'categories', 'tags'),
             'classes': ('collapse',)
         }),
     )

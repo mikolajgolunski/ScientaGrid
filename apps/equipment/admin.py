@@ -25,6 +25,7 @@ class EquipmentAdmin(TranslatableAdmin):
         'infrastructure__city__region',
         'created_at'
     ]
+    filter_horizontal = ['technology_domains', 'tags']
     search_fields = [
         'translations__name',
         'translations__description',
@@ -54,6 +55,10 @@ class EquipmentAdmin(TranslatableAdmin):
         }),
         ('Internal Notes', {
             'fields': ('internal_notes',),
+            'classes': ('collapse',)
+        }),
+        ('Classification', {
+            'fields': ('technology_domains', 'tags'),
             'classes': ('collapse',)
         }),
     )
