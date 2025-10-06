@@ -1,0 +1,18 @@
+[flake8]
+# Django-compatible flake8 configuration
+max-line-length = 120
+exclude = 
+    migrations,
+    __pycache__,
+    manage.py,
+    */settings/*,
+    */venv/*,
+    .venv
+ignore = 
+    # E203: whitespace before ':' (conflicts with black)
+    E203,
+    # W503: line break before binary operator (conflicts with PEP 8)
+    W503
+per-file-ignores =
+    # Django settings files can have longer lines for readability
+    */settings/*.py:E501
