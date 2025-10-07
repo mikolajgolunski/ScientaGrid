@@ -1,0 +1,94 @@
+{% extends "admin/base_site.html" %}
+{% load i18n static %}
+
+{% block title %}Search - {{ site_title }}{% endblock %}
+
+{% block breadcrumbs %}
+<div class="breadcrumbs">
+    <a href="{% url 'admin:index' %}">{% trans 'Home' %}</a>
+    &rsaquo; Search
+</div>
+{% endblock %}
+
+{% block content %}
+<h1>Search ScientaGrid</h1>
+
+<form method="get" action="">
+    <div style="margin-bottom: 20px;">
+        <input type="text" name="q" value="{{ query|default:'' }}" placeholder="Search..." style="width: 400px; padding: 8px;" autofocus>
+        
+        <select name="type" style="padding: 8px;">
+            <option value="unified" {% if search_type == 'unified' %}selected{% endif %}>All Types</option>
+            <option value="infrastructure" {% if search_type == 'infrastructure' %}selected{% endif %}>Infrastructures</option>
+            <option value="equipment" {% if search_type == 'equipment' %}selected{% endif %}>Equipment</option>
+            <option value="service" {% if search_type == 'service' %}selected{% endif %}>Services</option>
+        </select>
+        
+        <input type="submit" value="Search" class="button" style="padding: 8px 20px;">
+    </div>
+</form>
+
+{% if query %}
+    <h2>Search Results for "{{ query }}"</h2>
+    
+    {% if results %}
+        {# Unified search results #}
+        {% for result_type, data in results.items %}
+            <h3>{{ result_type|title }} ({{ data.count }} found in {{ data.time_ms }}ms)</h3>
+            {% if data.results %}
+                <ul>
+                {% for obj in data.results %}
+                    <li>
+                        <strong>{{ obj }}</strong>
+                        {% if obj.description %}
+                            <br><small>{{ obj.description|truncatewords:30 }}</small>
+                        {% endif %}
+                    </li>
+                {% endfor %}
+                </ul>
+            {% else %}
+                <p><em>No results found.</em></p>
+            {% endif %}
+        {% endfor %}
+    {% elif infrastructures %}
+        <p>Found {{ count }} infrastructure(s) in {{ time_ms }}ms</p>
+        <ul>
+        {% for infra in infrastructures %}
+            <li>
+                <a href="{% url 'admin:infrastructures_infrastructure_change' infra.id %}">{{ infra.name }}</a>
+                - {{ infra.city.name }}
+                {% if infra.description %}
+                    <br><small>{{ infra.description|truncatewords:30 }}</small>
+                {% endif %}
+            </li>
+        {% endfor %}
+        </ul>
+    {% elif equipment %}
+        <p>Found {{ count }} equipment in {{ time_ms }}ms</p>
+        <ul>
+        {% for eq in equipment %}
+            <li>
+                <a href="{% url 'admin:equipment_equipment_change' eq.id %}">{{ eq.name }}</a>
+                at {{ eq.infrastructure.name }}
+                {% if eq.description %}
+                    <br><small>{{ eq.description|truncatewords:30 }}</small>
+                {% endif %}
+            </li>
+        {% endfor %}
+        </ul>
+    {% elif services %}
+        <p>Found {{ count }} service(s) in {{ time_ms }}ms</p>
+        <ul>
+        {% for svc in services %}
+            <li>
+                <a href="{% url 'admin:services_service_change' svc.id %}">{{ svc.name }}</a>
+                {% if svc.description %}
+                    <br><small>{{ svc.description|truncatewords:30 }}</small>
+                {% endif %}
+            </li>
+        {% endfor %}
+        </ul>
+    {% endif %}
+{% endif %}
+
+{% endblock %}
