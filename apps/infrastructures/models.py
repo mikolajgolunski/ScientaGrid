@@ -5,6 +5,9 @@ from apps.locations.models import City
 from apps.users.models import UserProfile
 
 
+# This relationship is added dynamically in research_problems/models.py
+# Just documenting it here for clarity
+# Infrastructure.research_problems - many-to-many with ResearchProblem
 class Infrastructure(TranslatableModel):
     """Represents a research infrastructure facility."""
 

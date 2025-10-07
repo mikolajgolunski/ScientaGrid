@@ -30,7 +30,7 @@ class InfrastructureAdmin(TranslatableAdmin):
         'institution__institution_type',
         'created_at'
     ]
-    filter_horizontal = ['technology_domains', 'categories', 'tags']
+    filter_horizontal = ['technology_domains', 'categories', 'tags', 'research_problems']
     search_fields = [
         'translations__name',
         'translations__description',
@@ -59,6 +59,11 @@ class InfrastructureAdmin(TranslatableAdmin):
         ('Classification', {
             'fields': ('technology_domains', 'categories', 'tags'),
             'classes': ('collapse',)
+        }),
+        ('Research Problems', {
+            'fields': ('research_problems',),
+            'classes': ('collapse',),
+            'description': 'Research problems this infrastructure can help solve'
         }),
     )
 
