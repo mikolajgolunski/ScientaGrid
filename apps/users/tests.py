@@ -8,8 +8,7 @@ class StaffRoleModelTest(TestCase):
     def setUp(self):
         """Set up test data."""
         self.role = StaffRole.objects.create(
-            name='admin',
-            description='Full access to all features'
+            name='admin'
         )
 
     def test_staff_role_creation(self):
@@ -19,7 +18,7 @@ class StaffRoleModelTest(TestCase):
 
     def test_staff_role_str_representation(self):
         """Test staff role string representation."""
-        self.assertEqual(str(self.role), 'admin')
+        self.assertEqual(str(self.role), 'Admin')
 
 
 class UserProfileModelTest(TestCase):
@@ -71,9 +70,9 @@ class UserProfileModelTest(TestCase):
         self.assertTrue(readonly_user.is_readonly)
         self.assertFalse(self.user.is_readonly)
 
-    def test_user_is_admin_role_property(self):
+    def test_user_is_admin_property(self):
         """Test is_admin_role property."""
-        self.assertTrue(self.user.is_admin_role)
+        self.assertTrue(self.user.is_admin)
 
     def test_superuser_creation(self):
         """Test superuser is created correctly."""
