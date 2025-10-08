@@ -95,7 +95,7 @@ class Equipment(TranslatableModel):
     )
 
     class Meta:
-        ordering = ['infrastructure', 'id']
+        ordering = ['infrastructure_id', 'id']
         verbose_name_plural = "Equipment"
 
     def __str__(self):

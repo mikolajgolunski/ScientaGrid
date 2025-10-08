@@ -142,7 +142,7 @@ class DataQualityMetricAdmin(admin.ModelAdmin):
         'object_id',
         'quality_badge',
         'completeness_badge',
-        'quality_level',
+        'quality_level',  # This is OK in list_display
         'last_updated'
     ]
     list_filter = [
@@ -161,6 +161,7 @@ class DataQualityMetricAdmin(admin.ModelAdmin):
         'object_id',
         'completeness_score',
         'quality_score',
+        'quality_level',  # Add as readonly to display in detail view
         'missing_fields',
         'warnings',
         'has_description',
@@ -178,7 +179,7 @@ class DataQualityMetricAdmin(admin.ModelAdmin):
             'fields': ('content_type', 'object_id')
         }),
         ('Scores', {
-            'fields': ('quality_score', 'completeness_score', 'quality_level')
+            'fields': ('quality_score', 'completeness_score', 'quality_level')  # Now in readonly_fields
         }),
         ('Completeness Checks', {
             'fields': (

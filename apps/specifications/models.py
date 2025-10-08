@@ -83,7 +83,7 @@ class Specification(TranslatableModel):
     updated_at = models.DateTimeField(auto_now=True)
 
     class Meta:
-        ordering = ['category', 'display_order', 'translations__name']
+        ordering = ['category', 'display_order', 'id']
 
     def __str__(self):
         name = self.safe_translation_getter('name', any_language=True) or f"Specification {self.id}"

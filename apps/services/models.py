@@ -60,7 +60,7 @@ class Service(TranslatableModel):
     )
 
     class Meta:
-        ordering = ['translations__name']
+        ordering = ['id']
 
     def __str__(self):
         name = self.safe_translation_getter('name', any_language=True) or f"Service {self.id}"
@@ -127,7 +127,7 @@ class EquipmentService(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
 
     class Meta:
-        ordering = ['-is_primary', 'service__translations__name']
+        ordering = ['-is_primary', 'id']
         unique_together = [['equipment', 'service']]
         verbose_name = "Equipment-Service Link"
         verbose_name_plural = "Equipment-Service Links"

@@ -6,8 +6,8 @@ from .models import Equipment
 @admin.register(Equipment)
 class EquipmentAdmin(TranslatableAdmin):
     list_display = [
-        'name',
-        'infrastructure',
+        'get_name',  # Changed from 'name' to custom method
+        'get_infrastructure',  # Changed from 'infrastructure' to custom method
         'manufacturer',
         'model_number',
         'status',
@@ -64,6 +64,34 @@ class EquipmentAdmin(TranslatableAdmin):
     )
 
     readonly_fields = ['created_at', 'updated_at']
+
+    def get_name(self, obj):
+        """Display name using safe_translation_getter to avoid duplicates."""
+        return obj.safe_translation_getter('name', any_language=True) or f"Equipment {obj.id}"
+
+    get_name.short_description = 'Name'
+    get_name.admin_order_field = 'translations__name'
+
+    def get_infrastructure(self, obj):
+        """Display infrastructure name without causing translation joins."""
+        return obj.infrastructure.safe_translation_getter('name', any_language=True) or str(obj.infrastructure.id)
+
+    get_infrastructure.short_description = 'Infrastructure'
+    get_infrastructure.admin_order_field = 'infrastructure__id'
+
+    def get_queryset(self, request):
+        """Override to ensure we only get distinct equipment items."""
+        # Get base queryset without translation prefetching
+        qs = Equipment.objects.all()
+
+        # Apply standard admin filters but avoid translation ordering
+        ordering = self.get_ordering(request) or ['infrastructure_id', 'id']
+        # Filter out any ordering that involves translations
+        safe_ordering = [o for o in ordering if 'translation' not in o]
+        if safe_ordering:
+            qs = qs.order_by(*safe_ordering)
+
+        return qs
 
     def get_fieldsets(self, request, obj=None):
         """Add metadata fields when editing existing equipment."""

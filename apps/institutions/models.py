@@ -39,7 +39,7 @@ class Institution(TranslatableModel):
     updated_at = models.DateTimeField(auto_now=True)
 
     class Meta:
-        ordering = ['translations__name']
+        ordering = ['id']
 
     def __str__(self):
         return self.safe_translation_getter('name', any_language=True) or f"Institution {self.id}"

@@ -164,7 +164,7 @@ class Tag(TranslatableModel):
     updated_at = models.DateTimeField(auto_now=True)
 
     class Meta:
-        ordering = ['tag_type', 'translations__name']
+        ordering = ['tag_type', 'id']
 
     def __str__(self):
         return self.safe_translation_getter('name', any_language=True) or self.slug

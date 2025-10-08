@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django.utils.html import format_html
-from parler.admin import TranslatableAdmin
+from parler.admin import TranslatableAdmin, TranslatableTabularInline
 from .models import DocumentType, Document
 
 
@@ -57,7 +57,7 @@ class DocumentTypeAdmin(TranslatableAdmin):
     document_count.short_description = 'Documents'
 
 
-class DocumentInline(admin.TabularInline):
+class DocumentInline(TranslatableTabularInline):  # Changed from TabularInline to TranslatableTabularInline
     """Inline admin for documents."""
     model = Document
     extra = 1
@@ -68,8 +68,8 @@ class DocumentInline(admin.TabularInline):
 @admin.register(Document)
 class DocumentAdmin(TranslatableAdmin):
     list_display = [
-        'title',
-        'filename',
+        'get_title',  # Changed from 'title' to custom method
+        'get_filename',  # Changed from 'filename'
         'document_type',
         'get_related_to',
         'file_size_display',
@@ -130,6 +130,32 @@ class DocumentAdmin(TranslatableAdmin):
         'updated_at'
     ]
 
+    def get_title(self, obj):
+        """Display title using safe_translation_getter."""
+        return obj.safe_translation_getter('title', any_language=True) or obj.filename
+    get_title.short_description = 'Title'
+    get_title.admin_order_field = 'translations__title'
+
+    def get_filename(self, obj):
+        """Display filename with download link."""
+        if obj.file:
+            return format_html(
+                '<a href="{}" target="_blank">{}</a>',
+                obj.file.url,
+                obj.filename
+            )
+        return "-"
+    get_filename.short_description = 'File'
+
+    def get_queryset(self, request):
+        """Override to get distinct documents."""
+        qs = Document.objects.all()
+        ordering = self.get_ordering(request) or ['-created_at']
+        safe_ordering = [o for o in ordering if 'translation' not in o]
+        if safe_ordering:
+            qs = qs.order_by(*safe_ordering)
+        return qs
+
     def get_fieldsets(self, request, obj=None):
         """Add metadata fields when editing."""
         fieldsets = super().get_fieldsets(request, obj)
@@ -182,18 +208,6 @@ class DocumentAdmin(TranslatableAdmin):
         return "-"
 
     file_size_display.short_description = 'File Size'
-
-    def filename(self, obj):
-        """Display filename with download link."""
-        if obj.file:
-            return format_html(
-                '<a href="{}" target="_blank">{}</a>',
-                obj.file.url,
-                obj.filename
-            )
-        return "-"
-
-    filename.short_description = 'File'
 
     # Actions
     actions = [

@@ -47,7 +47,7 @@ class City(TranslatableModel):
 
     class Meta:
         verbose_name_plural = "Cities"
-        ordering = ["region", "translations__name"]
+        ordering = ["region", "id"]
 
     def __str__(self):
         return self.safe_translation_getter("name", any_language=True) or f"City {self.id}"

@@ -87,7 +87,7 @@ class Infrastructure(TranslatableModel):
     )
 
     class Meta:
-        ordering = ['translations__name']
+        ordering = ['id']
         verbose_name_plural = "Infrastructures"
 
     def __str__(self):
