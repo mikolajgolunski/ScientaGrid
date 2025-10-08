@@ -2,8 +2,10 @@ from django.contrib import admin
 from parler.admin import TranslatableAdmin
 from .models import Institution
 
+from ScientaGrid.admin import admin_site
 
-@admin.register(Institution)
+
+@admin.register(Institution, site=admin_site)
 class InstitutionAdmin(TranslatableAdmin):
     list_display = [
         'name',

@@ -2,8 +2,10 @@ from django.contrib import admin
 from parler.admin import TranslatableAdmin
 from .models import AccessCondition, PricingPolicy
 
+from ScientaGrid.admin import admin_site
 
-@admin.register(AccessCondition)
+
+@admin.register(AccessCondition, site=admin_site)
 class AccessConditionAdmin(TranslatableAdmin):
     list_display = [
         'name',
@@ -102,7 +104,7 @@ class AccessConditionAdmin(TranslatableAdmin):
     get_applies_to.short_description = 'Applies To'
 
 
-@admin.register(PricingPolicy)
+@admin.register(PricingPolicy, site=admin_site)
 class PricingPolicyAdmin(TranslatableAdmin):
     list_display = [
         'name',

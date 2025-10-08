@@ -2,8 +2,10 @@ from django.contrib import admin
 from parler.admin import TranslatableAdmin
 from .models import Specification, SpecificationValue
 
+from ScientaGrid.admin import admin_site
 
-@admin.register(Specification)
+
+@admin.register(Specification, site=admin_site)
 class SpecificationAdmin(TranslatableAdmin):
     list_display = [
         'code',
@@ -82,7 +84,7 @@ class SpecificationValueInline(admin.TabularInline):
     autocomplete_fields = ['specification']
 
 
-@admin.register(SpecificationValue)
+@admin.register(SpecificationValue, site=admin_site)
 class SpecificationValueAdmin(admin.ModelAdmin):
     list_display = [
         'equipment',
@@ -166,10 +168,10 @@ from apps.equipment.admin import EquipmentAdmin
 from apps.equipment.models import Equipment
 
 # Unregister and re-register with inline
-admin.site.unregister(Equipment)
+admin_site.unregister(Equipment)
 
 
-@admin.register(Equipment)
+@admin.register(Equipment, site=admin_site)
 class EquipmentAdminWithSpecs(EquipmentAdmin):
     inlines = EquipmentAdmin.inlines if hasattr(EquipmentAdmin, 'inlines') else []
     inlines = list(inlines) + [SpecificationValueInline]

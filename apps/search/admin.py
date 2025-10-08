@@ -3,11 +3,13 @@ from django.utils.html import format_html
 from .models import SavedSearch, SearchLog
 from .admin_views import register_search_admin_view
 
+from ScientaGrid.admin import admin_site
+
 # Register custom search view
-register_search_admin_view(admin.site)
+register_search_admin_view(admin_site)
 
 
-@admin.register(SavedSearch)
+@admin.register(SavedSearch, site=admin_site)
 class SavedSearchAdmin(admin.ModelAdmin):
     list_display = [
         'name',
@@ -68,7 +70,7 @@ class SavedSearchAdmin(admin.ModelAdmin):
     execute_search_link.short_description = 'Execute'
 
 
-@admin.register(SearchLog)
+@admin.register(SearchLog, site=admin_site)
 class SearchLogAdmin(admin.ModelAdmin):
     list_display = [
         'timestamp',

@@ -2,8 +2,10 @@ from django.contrib import admin
 from parler.admin import TranslatableAdmin
 from .models import TechnologyDomain, InfrastructureCategory, Tag
 
+from ScientaGrid.admin import admin_site
 
-@admin.register(TechnologyDomain)
+
+@admin.register(TechnologyDomain, site=admin_site)
 class TechnologyDomainAdmin(TranslatableAdmin):
     list_display = [
         'code',
@@ -72,7 +74,7 @@ class TechnologyDomainAdmin(TranslatableAdmin):
     equipment_count.short_description = 'Equipment'
 
 
-@admin.register(InfrastructureCategory)
+@admin.register(InfrastructureCategory, site=admin_site)
 class InfrastructureCategoryAdmin(TranslatableAdmin):
     list_display = [
         'code',
@@ -136,7 +138,7 @@ class InfrastructureCategoryAdmin(TranslatableAdmin):
     infrastructure_count.short_description = 'Infrastructures'
 
 
-@admin.register(Tag)
+@admin.register(Tag, site=admin_site)
 class TagAdmin(TranslatableAdmin):
     list_display = [
         'name',

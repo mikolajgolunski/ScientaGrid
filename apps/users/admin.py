@@ -5,8 +5,10 @@ from django.db import models
 
 from .models import StaffRole, UserProfile
 
+from ScientaGrid.admin import admin_site
 
-@admin.register(UserProfile)
+
+@admin.register(UserProfile, site=admin_site)
 class UserProfileAdmin(UserAdmin):
     """Custom admin for UserProfile with StaffRole and Group management."""
     
@@ -48,7 +50,7 @@ class UserProfileAdmin(UserAdmin):
                     pass
 
 
-@admin.register(StaffRole)
+@admin.register(StaffRole, site=admin_site)
 class StaffRoleAdmin(admin.ModelAdmin):
     """Admin for StaffRole model."""
     list_display = ('name', 'get_display_name', 'user_count')
@@ -67,9 +69,9 @@ class StaffRoleAdmin(admin.ModelAdmin):
 
 
 # Customize the default Group admin to show more information
-admin.site.unregister(Group)
+admin_site.unregister(Group)
 
-@admin.register(Group)
+@admin.register(Group, site=admin_site)
 class CustomGroupAdmin(GroupAdmin):
     """Enhanced Group admin with permission details."""
     list_display = ('name', 'permission_count')

@@ -2,8 +2,10 @@ from django.contrib import admin
 from django.utils.html import format_html
 from .models import AuditLog, ChangeHistory, DataQualityMetric
 
+from ScientaGrid.admin import admin_site
 
-@admin.register(AuditLog)
+
+@admin.register(AuditLog, site=admin_site)
 class AuditLogAdmin(admin.ModelAdmin):
     list_display = [
         'timestamp',
@@ -67,7 +69,7 @@ class AuditLogAdmin(admin.ModelAdmin):
         return False
 
 
-@admin.register(ChangeHistory)
+@admin.register(ChangeHistory, site=admin_site)
 class ChangeHistoryAdmin(admin.ModelAdmin):
     list_display = [
         'timestamp',
@@ -135,7 +137,7 @@ class ChangeHistoryAdmin(admin.ModelAdmin):
         return False
 
 
-@admin.register(DataQualityMetric)
+@admin.register(DataQualityMetric, site=admin_site)
 class DataQualityMetricAdmin(admin.ModelAdmin):
     list_display = [
         'content_type',

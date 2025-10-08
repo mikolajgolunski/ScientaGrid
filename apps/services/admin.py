@@ -2,6 +2,8 @@ from django.contrib import admin
 from parler.admin import TranslatableAdmin
 from .models import Service, EquipmentService
 
+from ScientaGrid.admin import admin_site
+
 
 class EquipmentServiceInline(admin.TabularInline):
     """Inline admin for equipment-service relationships."""
@@ -18,7 +20,7 @@ class EquipmentServiceInline(admin.TabularInline):
     autocomplete_fields = ['equipment']
 
 
-@admin.register(Service)
+@admin.register(Service, site=admin_site)
 class ServiceAdmin(TranslatableAdmin):
     list_display = [
         'name',
@@ -99,7 +101,7 @@ class ServiceAdmin(TranslatableAdmin):
     mark_inactive.short_description = "Mark selected as inactive"
 
 
-@admin.register(EquipmentService)
+@admin.register(EquipmentService, site=admin_site)
 class EquipmentServiceAdmin(admin.ModelAdmin):
     list_display = [
         'service',

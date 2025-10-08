@@ -4,15 +4,17 @@ from django.contrib import admin
 
 from .models import City, Country, Region
 
+from ScientaGrid.admin import admin_site
 
-@admin.register(Country)
+
+@admin.register(Country, site=admin_site)
 class CountryAdmin(TranslatableAdmin):
     list_display = ["name", "code"]
     search_fields = ["translations__name", "code"]
     ordering = ["code"]
 
 
-@admin.register(Region)
+@admin.register(Region, site=admin_site)
 class RegionAdmin(TranslatableAdmin):
     list_display = ["name", "country", "code"]
     list_filter = ["country"]
@@ -20,7 +22,7 @@ class RegionAdmin(TranslatableAdmin):
     autocomplete_fields = ["country"]
 
 
-@admin.register(City)
+@admin.register(City, site=admin_site)
 class CityAdmin(TranslatableAdmin):
     list_display = ["name", "region", "postal_code"]
     list_filter = ["region__country", "region"]

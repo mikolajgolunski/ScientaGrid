@@ -2,6 +2,8 @@ from django.contrib import admin
 from parler.admin import TranslatableAdmin
 from .models import Infrastructure, ContactPerson
 
+from ScientaGrid.admin import admin_site
+
 
 class ContactPersonInline(admin.TabularInline):
     """Inline admin for contact persons."""
@@ -10,7 +12,7 @@ class ContactPersonInline(admin.TabularInline):
     fields = ['first_name', 'last_name', 'position', 'email', 'phone', 'is_primary']
 
 
-@admin.register(Infrastructure)
+@admin.register(Infrastructure, site=admin_site)
 class InfrastructureAdmin(TranslatableAdmin):
     list_display = [
         'name',
@@ -88,7 +90,7 @@ class InfrastructureAdmin(TranslatableAdmin):
         super().save_model(request, obj, form, change)
 
 
-@admin.register(ContactPerson)
+@admin.register(ContactPerson, site=admin_site)
 class ContactPersonAdmin(admin.ModelAdmin):
     list_display = [
         'full_name',

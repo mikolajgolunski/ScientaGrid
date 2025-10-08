@@ -3,8 +3,10 @@ from django.utils.html import format_html
 from parler.admin import TranslatableAdmin, TranslatableTabularInline
 from .models import DocumentType, Document
 
+from ScientaGrid.admin import admin_site
 
-@admin.register(DocumentType)
+
+@admin.register(DocumentType, site=admin_site)
 class DocumentTypeAdmin(TranslatableAdmin):
     list_display = [
         'code',
@@ -65,7 +67,7 @@ class DocumentInline(TranslatableTabularInline):  # Changed from TabularInline t
     autocomplete_fields = ['document_type']
 
 
-@admin.register(Document)
+@admin.register(Document, site=admin_site)
 class DocumentAdmin(TranslatableAdmin):
     list_display = [
         'get_title',  # Changed from 'title' to custom method
@@ -253,20 +255,20 @@ from apps.services.models import Service
 # Unregister and re-register with document inline
 
 # Infrastructure
-admin.site.unregister(Infrastructure)
+admin_site.unregister(Infrastructure)
 
 
-@admin.register(Infrastructure)
+@admin.register(Infrastructure, site=admin_site)
 class InfrastructureAdminWithDocs(InfrastructureAdmin):
     inlines = list(InfrastructureAdmin.inlines) if hasattr(InfrastructureAdmin, 'inlines') else []
     inlines = inlines + [DocumentInline]
 
 
 # Equipment (already has SpecificationValueInline)
-admin.site.unregister(Equipment)
+admin_site.unregister(Equipment)
 
 
-@admin.register(Equipment)
+@admin.register(Equipment, site=admin_site)
 class EquipmentAdminWithDocs(EquipmentAdmin):
     # Get existing inlines if any
     existing_inlines = []
@@ -276,10 +278,10 @@ class EquipmentAdminWithDocs(EquipmentAdmin):
 
 
 # Service
-admin.site.unregister(Service)
+admin_site.unregister(Service)
 
 
-@admin.register(Service)
+@admin.register(Service, site=admin_site)
 class ServiceAdminWithDocs(ServiceAdmin):
     inlines = list(ServiceAdmin.inlines) if hasattr(ServiceAdmin, 'inlines') else []
     inlines = inlines + [DocumentInline]

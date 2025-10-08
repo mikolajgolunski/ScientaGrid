@@ -2,8 +2,10 @@ from django.contrib import admin
 from parler.admin import TranslatableAdmin
 from .models import FieldOfScience, Keyword, ResearchProblem
 
+from ScientaGrid.admin import admin_site
 
-@admin.register(FieldOfScience)
+
+@admin.register(FieldOfScience, site=admin_site)
 class FieldOfScienceAdmin(TranslatableAdmin):
     list_display = [
         'code',
@@ -65,7 +67,7 @@ class FieldOfScienceAdmin(TranslatableAdmin):
     problem_count.short_description = 'Research Problems'
 
 
-@admin.register(Keyword)
+@admin.register(Keyword, site=admin_site)
 class KeywordAdmin(TranslatableAdmin):
     list_display = [
         'name',
@@ -124,7 +126,7 @@ class KeywordAdmin(TranslatableAdmin):
     reset_usage_count.short_description = "Reset usage count to 0"
 
 
-@admin.register(ResearchProblem)
+@admin.register(ResearchProblem, site=admin_site)
 class ResearchProblemAdmin(TranslatableAdmin):
     list_display = [
         'title',

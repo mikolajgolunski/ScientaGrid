@@ -2,8 +2,10 @@ from django.contrib import admin
 from parler.admin import TranslatableAdmin
 from .models import Equipment
 
+from ScientaGrid.admin import admin_site
 
-@admin.register(Equipment)
+
+@admin.register(Equipment, site=admin_site)
 class EquipmentAdmin(TranslatableAdmin):
     list_display = [
         'get_name',  # Changed from 'name' to custom method
