@@ -110,7 +110,7 @@ class AccessCondition(TranslatableModel):
     updated_at = models.DateTimeField(auto_now=True)
 
     class Meta:
-        ordering = ['translations__name']
+        ordering = ['id']
 
     def __str__(self):
         name = self.safe_translation_getter('name', any_language=True) or f"Access Condition {self.id}"
@@ -251,7 +251,7 @@ class PricingPolicy(TranslatableModel):
     updated_at = models.DateTimeField(auto_now=True)
 
     class Meta:
-        ordering = ['-valid_from', 'translations__name']
+        ordering = ['-valid_from', 'id']
         verbose_name_plural = "Pricing Policies"
 
     def __str__(self):

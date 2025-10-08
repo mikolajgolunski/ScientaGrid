@@ -71,6 +71,12 @@ class AccessConditionAdmin(TranslatableAdmin):
 
     readonly_fields = ['created_at', 'updated_at']
 
+    def get_queryset(self, request):
+        """Override queryset to ensure we only show each object once."""
+        qs = super().get_queryset(request)
+        # Use distinct() to eliminate duplicate rows
+        return qs.distinct()
+
     def get_fieldsets(self, request, obj=None):
         """Add metadata fields when editing existing access condition."""
         fieldsets = super().get_fieldsets(request, obj)
@@ -152,6 +158,12 @@ class PricingPolicyAdmin(TranslatableAdmin):
     )
 
     readonly_fields = ['created_at', 'updated_at']
+
+    def get_queryset(self, request):
+        """Override queryset to ensure we only show each object once."""
+        qs = super().get_queryset(request)
+        # Use distinct() to eliminate duplicate rows
+        return qs.distinct()
 
     def get_fieldsets(self, request, obj=None):
         """Add metadata fields when editing existing pricing policy."""

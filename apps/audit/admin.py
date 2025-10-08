@@ -200,20 +200,22 @@ class DataQualityMetricAdmin(admin.ModelAdmin):
 
     def quality_badge(self, obj):
         """Display quality score with color."""
-        color = '#28a745' if obj.quality_score >= 75 else '#ffc107' if obj.quality_score >= 50 else '#dc3545'
+        score = float(obj.quality_score)
+        color = '#28a745' if score >= 75 else '#ffc107' if score >= 50 else '#dc3545'
         return format_html(
-            '<span style="background-color: {}; color: white; padding: 3px 8px; border-radius: 3px;">{:.1f}%</span>',
-            color, obj.quality_score
+            '<span style="background-color: {}; color: white; padding: 3px 8px; border-radius: 3px;">{}%</span>',
+            color, f'{score:.1f}'
         )
 
     quality_badge.short_description = 'Quality Score'
 
     def completeness_badge(self, obj):
         """Display completeness score with color."""
-        color = '#28a745' if obj.completeness_score >= 75 else '#ffc107' if obj.completeness_score >= 50 else '#dc3545'
+        score = float(obj.completeness_score)
+        color = '#28a745' if score >= 75 else '#ffc107' if score >= 50 else '#dc3545'
         return format_html(
-            '<span style="background-color: {}; color: white; padding: 3px 8px; border-radius: 3px;">{:.1f}%</span>',
-            color, obj.completeness_score
+            '<span style="background-color: {}; color: white; padding: 3px 8px; border-radius: 3px;">{}%</span>',
+            color, f'{score:.1f}'
         )
 
     completeness_badge.short_description = 'Completeness'
