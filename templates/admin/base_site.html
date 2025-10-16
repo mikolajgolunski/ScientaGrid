@@ -8,3 +8,13 @@
     <a href="{% url 'admin:index' %}">ScientaGrid Administration</a>
 </h1>
 {% endblock %}
+
+{% block extrastyle %}
+{{ block.super }}
+<link rel="stylesheet" href="{% static 'css/admin_sidebar_toggle.css' %}">
+{% endblock %}
+
+{% block extrahead %}
+{{ block.super }}
+<script src="{% static 'js/admin_sidebar_toggle.js' %}" defer></script>
+{% endblock %}
