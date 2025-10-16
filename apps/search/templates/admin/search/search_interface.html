@@ -33,13 +33,14 @@
     
     {% if results %}
         {# Unified search results #}
-        {% for result_type, data in results.items %}
-            <h3>{{ result_type|title }} ({{ data.count }} found in {{ data.time_ms }}ms)</h3>
-            {% if data.results %}
+        {% if 'infrastructures' in results %}
+            <h3>Infrastructures ({{ results.infrastructures.count }} found in {{ results.infrastructures.time_ms }}ms)</h3>
+            {% if results.infrastructures.results %}
                 <ul>
-                {% for obj in data.results %}
+                {% for obj in results.infrastructures.results %}
                     <li>
-                        <strong>{{ obj }}</strong>
+                        <a href="{% url 'admin:infrastructures_infrastructure_change' obj.id %}"><strong>{{ obj.name }}</strong></a>
+                        {% if obj.city %}- {{ obj.city.name }}{% endif %}
                         {% if obj.description %}
                             <br><small>{{ obj.description|truncatewords:30 }}</small>
                         {% endif %}
@@ -47,16 +48,73 @@
                 {% endfor %}
                 </ul>
             {% else %}
-                <p><em>No results found.</em></p>
+                <p><em>No infrastructures found.</em></p>
             {% endif %}
-        {% endfor %}
+        {% endif %}
+
+        {% if 'equipment' in results %}
+            <h3>Equipment ({{ results.equipment.count }} found in {{ results.equipment.time_ms }}ms)</h3>
+            {% if results.equipment.results %}
+                <ul>
+                {% for obj in results.equipment.results %}
+                    <li>
+                        <a href="{% url 'admin:equipment_equipment_change' obj.id %}"><strong>{{ obj.name }}</strong></a>
+                        {% if obj.infrastructure %}at {{ obj.infrastructure.name }}{% endif %}
+                        {% if obj.description %}
+                            <br><small>{{ obj.description|truncatewords:30 }}</small>
+                        {% endif %}
+                    </li>
+                {% endfor %}
+                </ul>
+            {% else %}
+                <p><em>No equipment found.</em></p>
+            {% endif %}
+        {% endif %}
+
+        {% if 'services' in results %}
+            <h3>Services ({{ results.services.count }} found in {{ results.services.time_ms }}ms)</h3>
+            {% if results.services.results %}
+                <ul>
+                {% for obj in results.services.results %}
+                    <li>
+                        <a href="{% url 'admin:services_service_change' obj.id %}"><strong>{{ obj.name }}</strong></a>
+                        {% if obj.code %}<small>({{ obj.code }})</small>{% endif %}
+                        {% if obj.description %}
+                            <br><small>{{ obj.description|truncatewords:30 }}</small>
+                        {% endif %}
+                    </li>
+                {% endfor %}
+                </ul>
+            {% else %}
+                <p><em>No services found.</em></p>
+            {% endif %}
+        {% endif %}
+
+        {% if 'research_problems' in results %}
+            <h3>Research Problems ({{ results.research_problems.count }} found in {{ results.research_problems.time_ms }}ms)</h3>
+            {% if results.research_problems.results %}
+                <ul>
+                {% for obj in results.research_problems.results %}
+                    <li>
+                        <a href="{% url 'admin:research_problems_researchproblem_change' obj.id %}"><strong>{{ obj.title }}</strong></a>
+                        {% if obj.status %}<small>({{ obj.get_status_display }})</small>{% endif %}
+                        {% if obj.description %}
+                            <br><small>{{ obj.description|truncatewords:30 }}</small>
+                        {% endif %}
+                    </li>
+                {% endfor %}
+                </ul>
+            {% else %}
+                <p><em>No research problems found.</em></p>
+            {% endif %}
+        {% endif %}
     {% elif infrastructures %}
         <p>Found {{ count }} infrastructure(s) in {{ time_ms }}ms</p>
         <ul>
         {% for infra in infrastructures %}
             <li>
-                <a href="{% url 'admin:infrastructures_infrastructure_change' infra.id %}">{{ infra.name }}</a>
-                - {{ infra.city.name }}
+                <a href="{% url 'admin:infrastructures_infrastructure_change' infra.id %}"><strong>{{ infra.name }}</strong></a>
+                {% if infra.city %}- {{ infra.city.name }}{% endif %}
                 {% if infra.description %}
                     <br><small>{{ infra.description|truncatewords:30 }}</small>
                 {% endif %}
@@ -68,8 +126,8 @@
         <ul>
         {% for eq in equipment %}
             <li>
-                <a href="{% url 'admin:equipment_equipment_change' eq.id %}">{{ eq.name }}</a>
-                at {{ eq.infrastructure.name }}
+                <a href="{% url 'admin:equipment_equipment_change' eq.id %}"><strong>{{ eq.name }}</strong></a>
+                {% if eq.infrastructure %}at {{ eq.infrastructure.name }}{% endif %}
                 {% if eq.description %}
                     <br><small>{{ eq.description|truncatewords:30 }}</small>
                 {% endif %}
@@ -81,13 +139,16 @@
         <ul>
         {% for svc in services %}
             <li>
-                <a href="{% url 'admin:services_service_change' svc.id %}">{{ svc.name }}</a>
+                <a href="{% url 'admin:services_service_change' svc.id %}"><strong>{{ svc.name }}</strong></a>
+                {% if svc.code %}<small>({{ svc.code }})</small>{% endif %}
                 {% if svc.description %}
                     <br><small>{{ svc.description|truncatewords:30 }}</small>
                 {% endif %}
             </li>
         {% endfor %}
         </ul>
+    {% else %}
+        <p><em>No results found.</em></p>
     {% endif %}
 {% endif %}
 
