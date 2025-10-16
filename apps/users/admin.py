@@ -68,9 +68,6 @@ class StaffRoleAdmin(admin.ModelAdmin):
     user_count.short_description = "Users with this role"
 
 
-# Customize the default Group admin to show more information
-admin_site.unregister(Group)
-
 @admin.register(Group, site=admin_site)
 class CustomGroupAdmin(GroupAdmin):
     """Enhanced Group admin with permission details."""

@@ -11,22 +11,22 @@ class MyAdminSite(admin.AdminSite):
 
         # Define your custom ordering
         app_order = [
-            'access',
-            'api',
-            'audit',
-            'documents',
+            'research_problems',
+            'search',
+            'services',
             'equipment',
+            'documents',
             'infrastructures',
             'institutions',
             'locations',
-            'matching',
-            'research_problems',
-            'scheduling',
-            'search',
-            'services',
+            'access',
             'specifications',
+            'audit',
             'taxonomy',
             'users',
+            'api',
+            'matching',
+            'scheduling',
         ]
 
         # Sort the app list
